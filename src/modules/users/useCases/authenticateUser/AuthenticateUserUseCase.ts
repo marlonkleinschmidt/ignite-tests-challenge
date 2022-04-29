@@ -2,7 +2,7 @@ import { inject, injectable } from "tsyringe";
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 
-import authConfig from '../../../../config/auth';
+//import authConfig from '../../../../config/auth';
 
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 import { IAuthenticateUserResponseDTO } from "./IAuthenticateUserResponseDTO";
@@ -33,11 +33,11 @@ export class AuthenticateUserUseCase {
       throw new IncorrectEmailOrPasswordError();
     }
 
-    const { secret, expiresIn } = authConfig.jwt;
+    //const { secret, expiresIn } = authConfig.jwt;
 
-    const token = sign({ user }, secret, {
+    const token = sign({}, "senhasupersecreta123", {
       subject: user.id,
-      expiresIn,
+      expiresIn: "1d"
     });
 
     return {
